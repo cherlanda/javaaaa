@@ -1,0 +1,87 @@
+JFDML JFormDesigner: "5.2.2.2.228" Java: "1.8.0_51" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {seq {comp jPanel2:::p::p, space s:::p, par l:::p {seq l {par l {comp jLabel3:::p::p, comp jScrollPane2:::p:374:p}, space :p:18:p}, seq l {space :p:21:p, comp jButton4:::p::p, space :::x, comp jButton5:::p::p, space :p:58:p}}}, seq {comp jPanel1:::p::p, space :0:0:x}, comp jPanel5:::::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp jPanel1:::p::p, par l:::p {seq l {space s:::p, comp jPanel2:::p::p, space u:::p}, seq l {space :p:27:p, comp jLabel3:::p::p, space u:::p, comp jScrollPane2:::p::p, space :::x, par b {comp jButton4::b:p::p, comp jButton5::b:p::p}, space :p:37:p}}, comp jPanel5:::::x, space :::p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 3
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :::p, par l {comp jLabel1:::p::p, seq {comp jTextField1:::p:244:p, space s:::p, comp jButton6:::p::p, space s:::p, comp jButton7:::p::p}}, space ::45:x}}"
+				"$verticalGroup": "par l {seq l {comp jLabel1:::p::p, space :::p, par b {comp jTextField1::b:p::p, comp jButton6::b:p::p, comp jButton7::b:p::p}, space :0:11:x}}"
+			} ) {
+				name: "jPanel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "jLabel1"
+					"text": "Upload:"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "jTextField1"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "jButton6"
+					"text": "SEARCH"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jButton6ActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "jButton7"
+					"text": "UPLOAD"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jButton7ActionPerformed", true ) )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {comp jScrollPane1:::p::p, comp jLabel2:::p::p}, space :0:0:x}, seq l {space :::p, comp jButton3:::p::p, space :::x}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp jLabel2:::p::p, space :p:12:p, comp jScrollPane1:::p::p, space ::102:x, comp jButton3:::p::p, space :::p}}"
+			} ) {
+				name: "jPanel2"
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "jScrollPane1"
+					add( new FormComponent( "javax.swing.JTable" ) {
+						name: "jTable1"
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "jLabel2"
+					"text": "Data"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "jButton3"
+					"text": "BACK TO MAIN MENU"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jButton3ActionPerformed", true ) )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {space :0:0:x}"
+				"$verticalGroup": "par l {space :0:0:x}"
+			} ) {
+				name: "jPanel5"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "jLabel3"
+				"text": "Sorted Data"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "jScrollPane2"
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "jTable2"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "jButton4"
+				"text": "SORT ORDER"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jButton4ActionPerformed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "jButton5"
+				"text": "SAVE AS .CSV"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "jButton5ActionPerformed", true ) )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 880, 745 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}
