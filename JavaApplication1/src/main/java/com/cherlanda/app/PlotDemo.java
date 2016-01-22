@@ -1,16 +1,17 @@
-//
+package com.cherlanda.app;//
 // PlotDemo demo - REngine and graphics
 //
 // $Id: PlotDemo.java 2767 2007-05-24 16:49:25Z urbanek $
 //
 
-import java.io.*;
-import java.util.*;
-import java.awt.*;
-import java.awt.event.*;
+import org.rosuda.REngine.REXP;
+import org.rosuda.REngine.REXPMismatchException;
+import org.rosuda.REngine.Rserve.RConnection;
+import org.rosuda.REngine.Rserve.RserveException;
 
-import org.rosuda.REngine.*;
-import org.rosuda.REngine.Rserve.*;
+import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /** A demonstration of the use of Rserver and graphics devices to create graphics in R, pull them into Java and display them. It is a really simple demo. */
 public class PlotDemo extends Canvas {
@@ -36,6 +37,7 @@ public class PlotDemo extends Canvas {
                 // this is analogous to 'warnings', but for us it's sufficient to get just the 1st warning
                 REXP w = c.eval("if (exists('last.warning') && length(last.warning)>0) names(last.warning)[1] else 0");
                 if (w.isString()) System.err.println(w.asString());
+
                 return;
             }
                  
