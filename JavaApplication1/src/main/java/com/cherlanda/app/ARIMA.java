@@ -99,34 +99,26 @@ public class ARIMA extends javax.swing.JFrame {
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     Container contentPane = getContentPane();
     contentPane.setLayout(new GridBagLayout());
-    ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
-    ((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] {0, 0, 0};
-    ((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
-    ((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
+    ((GridBagLayout)contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
+    ((GridBagLayout)contentPane.getLayout()).rowHeights = new int[] {0, 0, 0};
+    ((GridBagLayout)contentPane.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
+    ((GridBagLayout)contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
     //======== jPanel1 ========
     {
 
       // JFormDesigner evaluation mark
       jPanel1.setBorder(new javax.swing.border.CompoundBorder(
-          new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
-              "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-              javax.swing.border.TitledBorder.BOTTOM,
-              new java.awt.Font("Dialog", java.awt.Font.BOLD, 12), java.awt.Color.red),
-          jPanel1.getBorder()));
-      jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-        public void propertyChange(java.beans.PropertyChangeEvent e) {
-          if ("border".equals(e.getPropertyName()))
-            throw new RuntimeException();
-        }
-      });
+        new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
+          "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
+          javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
+          java.awt.Color.red), jPanel1.getBorder())); jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
       jPanel1.setLayout(new GridBagLayout());
-      ((GridBagLayout) jPanel1.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
-      ((GridBagLayout) jPanel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
-      ((GridBagLayout) jPanel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
-      ((GridBagLayout) jPanel1.getLayout()).rowWeights =
-          new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+      ((GridBagLayout)jPanel1.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
+      ((GridBagLayout)jPanel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+      ((GridBagLayout)jPanel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+      ((GridBagLayout)jPanel1.getLayout()).rowWeights = new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
       //======== jPanel6 ========
       {
@@ -146,8 +138,9 @@ public class ARIMA extends javax.swing.JFrame {
         jButton8.setText("APPLY");
         jPanel6.add(jButton8);
       }
-      jPanel1.add(jPanel6, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel6, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel2 ========
       {
@@ -172,8 +165,9 @@ public class ARIMA extends javax.swing.JFrame {
         jButton2.addActionListener(e -> jButton2ActionPerformed(e));
         jPanel2.add(jButton2);
       }
-      jPanel1.add(jPanel2, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
+      jPanel1.add(jPanel2, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 5, 0), 0, 0));
 
       //======== jPanel3 ========
       {
@@ -183,45 +177,135 @@ public class ARIMA extends javax.swing.JFrame {
 
           //---- Table_Forecast ----
           Table_Forecast.setModel(new DefaultTableModel(
-              new Object[][] {{null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
-                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},},
-              new String[] {"Date", "Withdrawals"}));
+            new Object[][] {
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+              {null, null},
+            },
+            new String[] {
+              "Date", "Withdrawals"
+            }
+          ));
           jScrollPane1.setViewportView(Table_Forecast);
         }
 
         GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup()
+        jPanel3Layout.setHorizontalGroup(
+          jPanel3Layout.createParallelGroup()
             .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 524,
-                    GroupLayout.PREFERRED_SIZE).addContainerGap()));
-        jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup()
+              .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 524, GroupLayout.PREFERRED_SIZE)
+              .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+          jPanel3Layout.createParallelGroup()
             .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 586,
-                    GroupLayout.PREFERRED_SIZE).addContainerGap()));
+              .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 586, GroupLayout.PREFERRED_SIZE)
+              .addContainerGap())
+        );
       }
-      jPanel1.add(jPanel3, new GridBagConstraints(2, 1, 1, 4, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+      jPanel1.add(jPanel3, new GridBagConstraints(2, 1, 1, 4, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 0, 0), 0, 0));
 
       //======== jPanel4 ========
       {
@@ -244,27 +328,39 @@ public class ARIMA extends javax.swing.JFrame {
 
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup().addGroup(
-            jPanel4Layout.createSequentialGroup().addContainerGap().addGroup(
-                jPanel4Layout.createParallelGroup()
-                    .addComponent(jButton6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE).addGroup(
-                    jPanel4Layout.createSequentialGroup().addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
-                    .addComponent(jButton4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)
-                    .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                        Short.MAX_VALUE)).addContainerGap()));
-        jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup().addGroup(
-            jPanel4Layout.createSequentialGroup().addContainerGap().addComponent(jLabel2)
-                .addGap(18, 18, 18).addComponent(jButton3).addGap(18, 18, 18).addComponent(jButton4)
-                .addGap(18, 18, 18).addComponent(jButton5).addGap(18, 18, 18).addComponent(jButton6)
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        jPanel4Layout.setHorizontalGroup(
+          jPanel4Layout.createParallelGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+              .addContainerGap()
+              .addGroup(jPanel4Layout.createParallelGroup()
+                .addComponent(jButton6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                  .addComponent(jLabel2)
+                  .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+              .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+          jPanel4Layout.createParallelGroup()
+            .addGroup(jPanel4Layout.createSequentialGroup()
+              .addContainerGap()
+              .addComponent(jLabel2)
+              .addGap(18, 18, 18)
+              .addComponent(jButton3)
+              .addGap(18, 18, 18)
+              .addComponent(jButton4)
+              .addGap(18, 18, 18)
+              .addComponent(jButton5)
+              .addGap(18, 18, 18)
+              .addComponent(jButton6)
+              .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
       }
-      jPanel1.add(jPanel4, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel4, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel5 ========
       {
@@ -286,63 +382,76 @@ public class ARIMA extends javax.swing.JFrame {
 
         GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup().addGroup(
-            jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(
-                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel3).addGroup(
-                    jPanel5Layout.createSequentialGroup().addComponent(jLabel6).addGap(18, 18, 18)
-                        .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
-                    .addGroup(jPanel5Layout.createSequentialGroup().addGroup(
-                        jPanel5Layout.createParallelGroup().addComponent(jLabel4)
-                            .addComponent(jLabel5)).addGap(18, 18, 18).addGroup(
-                        jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 50,
-                                Short.MAX_VALUE).addComponent(jTextField3))))
-                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(GroupLayout.Alignment.TRAILING,
-                jPanel5Layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton7)));
-        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup().addGroup(
-            jPanel5Layout.createSequentialGroup().addContainerGap().addComponent(jLabel3)
-                .addGap(18, 18, 18).addGroup(
-                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        jPanel5Layout.setHorizontalGroup(
+          jPanel5Layout.createParallelGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
+              .addContainerGap()
+              .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                .addComponent(jLabel3)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                  .addComponent(jLabel6)
+                  .addGap(18, 18, 18)
+                  .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                  .addGroup(jPanel5Layout.createParallelGroup()
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
-                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
-                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                        GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
-                    Short.MAX_VALUE).addComponent(jButton7)));
+                    .addComponent(jLabel5))
+                  .addGap(18, 18, 18)
+                  .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(jTextField3))))
+              .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+              .addGap(0, 0, Short.MAX_VALUE)
+              .addComponent(jButton7))
+        );
+        jPanel5Layout.setVerticalGroup(
+          jPanel5Layout.createParallelGroup()
+            .addGroup(jPanel5Layout.createSequentialGroup()
+              .addContainerGap()
+              .addComponent(jLabel3)
+              .addGap(18, 18, 18)
+              .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel4)
+                .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+              .addGap(18, 18, 18)
+              .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel5)
+                .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+              .addGap(18, 18, 18)
+              .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(jLabel6)
+                .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+              .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(jButton7))
+        );
       }
-      jPanel1.add(jPanel5, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel5, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel7 ========
       {
         jPanel7.setLayout(new GridBagLayout());
-        ((GridBagLayout) jPanel7.getLayout()).columnWidths = new int[] {0, 0};
-        ((GridBagLayout) jPanel7.getLayout()).rowHeights = new int[] {0, 0};
-        ((GridBagLayout) jPanel7.getLayout()).columnWeights = new double[] {0.0, 1.0E-4};
-        ((GridBagLayout) jPanel7.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
+        ((GridBagLayout)jPanel7.getLayout()).columnWidths = new int[] {0, 0};
+        ((GridBagLayout)jPanel7.getLayout()).rowHeights = new int[] {0, 0};
+        ((GridBagLayout)jPanel7.getLayout()).columnWeights = new double[] {0.0, 1.0E-4};
+        ((GridBagLayout)jPanel7.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
 
         //---- jButton9 ----
         jButton9.setText("BACK TO MAIN MENU");
         jButton9.addActionListener(e -> jButton9ActionPerformed(e));
-        jPanel7.add(jButton9,
-            new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-                GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+        jPanel7.add(jButton9, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+          new Insets(0, 0, 0, 0), 0, 0));
       }
-      jPanel1.add(jPanel7, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel7, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
+        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+        new Insets(0, 0, 5, 5), 0, 0));
     }
-    contentPane.add(jPanel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
-        GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
+    contentPane.add(jPanel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
+      GridBagConstraints.CENTER, GridBagConstraints.BOTH,
+      new Insets(0, 0, 5, 5), 0, 0));
     pack();
     setLocationRelativeTo(getOwner());
   }// </editor-fold>//GEN-END:initComponents
