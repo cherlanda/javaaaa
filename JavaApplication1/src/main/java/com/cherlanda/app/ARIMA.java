@@ -10,6 +10,9 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.rosuda.REngine.REXP;
+import org.rosuda.REngine.REngine;
+import org.rosuda.REngine.Rserve.RConnection;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -315,7 +318,10 @@ public class ARIMA extends javax.swing.JFrame {
 
         //---- jButton3 ----
         jButton3.setText("PLOT TS");
-        jButton3.addActionListener(e -> jButton3ActionPerformed(e));
+        jButton3.addActionListener(e -> {
+			jButton3ActionPerformed(e);
+			jButton3ActionPerformed(e);
+		});
 
         //---- jButton4 ----
         jButton4.setText("CHECK STATIONARY");
@@ -484,6 +490,21 @@ public class ARIMA extends javax.swing.JFrame {
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
+    RConnection rConnection = null;
+    try {
+      rConnection = new RConnection();
+      rConnection.eval("library(xlsx)");
+      rConnection.eval("library(tseries)");
+      System.out.print(fileUploadName);
+      rConnection.eval("data=read.xlsx(\""+fileUploadName.replace("\\", "/")+"\",1)");
+      REXP res = rConnection.eval("plot.ts(data)");
+
+      System.out.println(res.asString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      if(rConnection.isConnected()) rConnection.close();
+    }
 
 
   }//GEN-LAST:event_jButton3ActionPerformed
