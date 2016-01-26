@@ -5,20 +5,20 @@
  */
 package com.cherlanda.app;
 
+import com.willypt.RClient;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.rosuda.REngine.REXP;
-import org.rosuda.REngine.REngine;
 import org.rosuda.REngine.Rserve.RConnection;
+import org.rosuda.REngine.Rserve.RFileInputStream;
+import org.rosuda.REngine.Rserve.RFileOutputStream;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
@@ -29,6 +29,7 @@ import java.io.FileInputStream;
  */
 public class ARIMA extends javax.swing.JFrame {
   private String fileUploadName;
+  private boolean buttonPlotClicked = false;
 
   /**
    * Creates new form ARIMA
@@ -36,7 +37,7 @@ public class ARIMA extends javax.swing.JFrame {
   private void jButton2ActionPerformed(ActionEvent e) {
     FileInputStream fileInputStream = null;
     try {
-      DefaultTableModel model = new DefaultTableModel(new String[]{"Date", "Withdrawals"}, 0);
+      DefaultTableModel model = new DefaultTableModel(new String[] {"Date", "Withdrawals"}, 0);
       fileInputStream = new FileInputStream(fileUploadName);
       XSSFWorkbook book = new XSSFWorkbook(fileInputStream);
       XSSFSheet sheet = book.getSheet("Sheet1");
@@ -45,7 +46,7 @@ public class ARIMA extends javax.swing.JFrame {
       for (int i = 1; i < rowNum; i++) {
         XSSFRow row = sheet.getRow(i);
         row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
-        model.addRow(new Object[]{row.getCell(0).toString(), row.getCell(1).toString()});
+        model.addRow(new Object[] {row.getCell(0).toString(), row.getCell(1).toString()});
       }
       fileInputStream.close();
       Table_Forecast.setModel(model);
@@ -104,10 +105,10 @@ public class ARIMA extends javax.swing.JFrame {
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     Container contentPane = getContentPane();
     contentPane.setLayout(new GridBagLayout());
-    ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[]{0, 0, 0};
-    ((GridBagLayout) contentPane.getLayout()).rowHeights = new int[]{0, 0, 0};
-    ((GridBagLayout) contentPane.getLayout()).columnWeights = new double[]{0.0, 0.0, 1.0E-4};
-    ((GridBagLayout) contentPane.getLayout()).rowWeights = new double[]{0.0, 0.0, 1.0E-4};
+    ((GridBagLayout) contentPane.getLayout()).columnWidths = new int[] {0, 0, 0};
+    ((GridBagLayout) contentPane.getLayout()).rowHeights = new int[] {0, 0, 0};
+    ((GridBagLayout) contentPane.getLayout()).columnWeights = new double[] {0.0, 0.0, 1.0E-4};
+    ((GridBagLayout) contentPane.getLayout()).rowWeights = new double[] {0.0, 0.0, 1.0E-4};
 
     //======== jPanel1 ========
     {
@@ -116,19 +117,22 @@ public class ARIMA extends javax.swing.JFrame {
       jPanel1.setBorder(new javax.swing.border.CompoundBorder(
           new javax.swing.border.TitledBorder(new javax.swing.border.EmptyBorder(0, 0, 0, 0),
               "JFormDesigner Evaluation", javax.swing.border.TitledBorder.CENTER,
-              javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
-              java.awt.Color.red), jPanel1.getBorder()));
+              javax.swing.border.TitledBorder.BOTTOM,
+              new java.awt.Font("Dialog", java.awt.Font.BOLD, 12), java.awt.Color.red),
+          jPanel1.getBorder()));
       jPanel1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
         public void propertyChange(java.beans.PropertyChangeEvent e) {
-          if ("border".equals(e.getPropertyName())) throw new RuntimeException();
+          if ("border".equals(e.getPropertyName()))
+            throw new RuntimeException();
         }
       });
 
       jPanel1.setLayout(new GridBagLayout());
-      ((GridBagLayout) jPanel1.getLayout()).columnWidths = new int[]{0, 0, 0, 0};
-      ((GridBagLayout) jPanel1.getLayout()).rowHeights = new int[]{0, 0, 0, 0, 0, 0};
-      ((GridBagLayout) jPanel1.getLayout()).columnWeights = new double[]{0.0, 0.0, 0.0, 1.0E-4};
-      ((GridBagLayout) jPanel1.getLayout()).rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
+      ((GridBagLayout) jPanel1.getLayout()).columnWidths = new int[] {0, 0, 0, 0};
+      ((GridBagLayout) jPanel1.getLayout()).rowHeights = new int[] {0, 0, 0, 0, 0, 0};
+      ((GridBagLayout) jPanel1.getLayout()).columnWeights = new double[] {0.0, 0.0, 0.0, 1.0E-4};
+      ((GridBagLayout) jPanel1.getLayout()).rowWeights =
+          new double[] {0.0, 0.0, 0.0, 0.0, 0.0, 1.0E-4};
 
       //======== jPanel6 ========
       {
@@ -148,9 +152,8 @@ public class ARIMA extends javax.swing.JFrame {
         jButton8.setText("APPLY");
         jPanel6.add(jButton8);
       }
-      jPanel1.add(jPanel6, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel6, new GridBagConstraints(0, 2, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel2 ========
       {
@@ -175,9 +178,8 @@ public class ARIMA extends javax.swing.JFrame {
         jButton2.addActionListener(e -> jButton2ActionPerformed(e));
         jPanel2.add(jButton2);
       }
-      jPanel1.add(jPanel2, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 5, 0), 0, 0));
+      jPanel1.add(jPanel2, new GridBagConstraints(0, 0, 3, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 
       //======== jPanel3 ========
       {
@@ -187,135 +189,45 @@ public class ARIMA extends javax.swing.JFrame {
 
           //---- Table_Forecast ----
           Table_Forecast.setModel(new DefaultTableModel(
-              new Object[][]{
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-                  {null, null},
-              },
-              new String[]{
-                  "Date", "Withdrawals"
-              }
-          ));
+              new Object[][] {{null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},
+                  {null, null}, {null, null}, {null, null}, {null, null}, {null, null},},
+              new String[] {"Date", "Withdrawals"}));
           jScrollPane1.setViewportView(Table_Forecast);
         }
 
         GroupLayout jPanel3Layout = new GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 524, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 586, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
-        );
+        jPanel3Layout.setHorizontalGroup(jPanel3Layout.createParallelGroup()
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 524,
+                    GroupLayout.PREFERRED_SIZE).addContainerGap()));
+        jPanel3Layout.setVerticalGroup(jPanel3Layout.createParallelGroup()
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 586,
+                    GroupLayout.PREFERRED_SIZE).addContainerGap()));
       }
-      jPanel1.add(jPanel3, new GridBagConstraints(2, 1, 1, 4, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 0, 0), 0, 0));
+      jPanel1.add(jPanel3, new GridBagConstraints(2, 1, 1, 4, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 
       //======== jPanel4 ========
       {
@@ -341,39 +253,27 @@ public class ARIMA extends javax.swing.JFrame {
 
         GroupLayout jPanel4Layout = new GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup()
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel4Layout.createParallelGroup()
-                        .addComponent(jButton6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(0, 0, Short.MAX_VALUE))
-                        .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup()
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel2)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton3)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton4)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton5)
-                    .addGap(18, 18, 18)
-                    .addComponent(jButton6)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel4Layout.setHorizontalGroup(jPanel4Layout.createParallelGroup().addGroup(
+            jPanel4Layout.createSequentialGroup().addContainerGap().addGroup(
+                jPanel4Layout.createParallelGroup()
+                    .addComponent(jButton6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE).addGroup(
+                    jPanel4Layout.createSequentialGroup().addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jButton5, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(jButton4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)
+                    .addComponent(jButton3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                        Short.MAX_VALUE)).addContainerGap()));
+        jPanel4Layout.setVerticalGroup(jPanel4Layout.createParallelGroup().addGroup(
+            jPanel4Layout.createSequentialGroup().addContainerGap().addComponent(jLabel2)
+                .addGap(18, 18, 18).addComponent(jButton3).addGap(18, 18, 18).addComponent(jButton4)
+                .addGap(18, 18, 18).addComponent(jButton5).addGap(18, 18, 18).addComponent(jButton6)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
       }
-      jPanel1.add(jPanel4, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel4, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel5 ========
       {
@@ -395,76 +295,63 @@ public class ARIMA extends javax.swing.JFrame {
 
         GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup()
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGroup(jPanel5Layout.createParallelGroup()
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                                .addComponent(jTextField3))))
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton7))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup()
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel3)
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton7))
-        );
+        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup().addGroup(
+            jPanel5Layout.createSequentialGroup().addContainerGap().addGroup(
+                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3).addGroup(
+                    jPanel5Layout.createSequentialGroup().addComponent(jLabel6).addGap(18, 18, 18)
+                        .addComponent(jTextField4, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup().addGroup(
+                        jPanel5Layout.createParallelGroup().addComponent(jLabel4)
+                            .addComponent(jLabel5)).addGap(18, 18, 18).addGroup(
+                        jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2, GroupLayout.DEFAULT_SIZE, 50,
+                                Short.MAX_VALUE).addComponent(jTextField3))))
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(GroupLayout.Alignment.TRAILING,
+                jPanel5Layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jButton7)));
+        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup().addGroup(
+            jPanel5Layout.createSequentialGroup().addContainerGap().addComponent(jLabel3)
+                .addGap(18, 18, 18).addGroup(
+                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jTextField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
+                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE)).addGap(18, 18, 18).addGroup(
+                jPanel5Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jTextField4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                        GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE,
+                    Short.MAX_VALUE).addComponent(jButton7)));
       }
-      jPanel1.add(jPanel5, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel5, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
 
       //======== jPanel7 ========
       {
         jPanel7.setLayout(new GridBagLayout());
-        ((GridBagLayout) jPanel7.getLayout()).columnWidths = new int[]{0, 0};
-        ((GridBagLayout) jPanel7.getLayout()).rowHeights = new int[]{0, 0};
-        ((GridBagLayout) jPanel7.getLayout()).columnWeights = new double[]{0.0, 1.0E-4};
-        ((GridBagLayout) jPanel7.getLayout()).rowWeights = new double[]{0.0, 1.0E-4};
+        ((GridBagLayout) jPanel7.getLayout()).columnWidths = new int[] {0, 0};
+        ((GridBagLayout) jPanel7.getLayout()).rowHeights = new int[] {0, 0};
+        ((GridBagLayout) jPanel7.getLayout()).columnWeights = new double[] {0.0, 1.0E-4};
+        ((GridBagLayout) jPanel7.getLayout()).rowWeights = new double[] {0.0, 1.0E-4};
 
         //---- jButton9 ----
         jButton9.setText("BACK TO MAIN MENU");
         jButton9.addActionListener(e -> jButton9ActionPerformed(e));
-        jPanel7.add(jButton9, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-            GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-            new Insets(0, 0, 0, 0), 0, 0));
+        jPanel7.add(jButton9,
+            new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+                GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
       }
-      jPanel1.add(jPanel7, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0,
-          GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-          new Insets(0, 0, 5, 5), 0, 0));
+      jPanel1.add(jPanel7, new GridBagConstraints(0, 3, 2, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+          GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
     }
-    contentPane.add(jPanel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0,
-        GridBagConstraints.CENTER, GridBagConstraints.BOTH,
-        new Insets(0, 0, 5, 5), 0, 0));
+    contentPane.add(jPanel1, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER,
+        GridBagConstraints.BOTH, new Insets(0, 0, 5, 5), 0, 0));
     pack();
     setLocationRelativeTo(getOwner());
   }// </editor-fold>//GEN-END:initComponents
@@ -497,56 +384,45 @@ public class ARIMA extends javax.swing.JFrame {
   private void jButton3ActionPerformed(
       java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
     // TODO add your handling code here:
-    RConnection rConnection = null;
-    try {
-      String device = "jpeg";
+    if(!buttonPlotClicked) {
+      buttonPlotClicked = true;
+      RClient client = new RClient();
+      REXP res = null;
+      try {
+        client.eval("library(xlsx)");
+        client.eval("library(tseries)");
+        System.out.print(fileUploadName);
 
+        client.saveToServer(fileUploadName, "temp.xlsx");
 
-      rConnection = new RConnection();
+        client.eval("data=read.xlsx2(\"temp.xlsx\",1)");
+        client.eval("plot.ts(data)");
+        client.eval("on.exit(dev.off())");
 
-      if (rConnection.parseAndEval("suppressWarnings(require('Cairo',quietly=TRUE))").asInteger() > 0)
-        device = "CairoJPEG"; // great, we can use Cairo device
-      else
-        System.out.println("(consider installing Cairo package for better bitmap output)");
-      REXP xp = rConnection.parseAndEval("try(" + device + "('test.jpg',quality=90))");
+        client.eval("dev.copy(jpeg,filename='plot.jpg')");
+        client.eval("dev.off()");
 
-      if (xp.inherits("try-error")) { // if the result is of the class try-error then there was a problem
-        System.err.println("Can't open " + device + " graphics device:\n" + xp.asString());
-        // this is analogous to 'warnings', but for us it's sufficient to get just the 1st warning
-        REXP w = rConnection.eval("if (exists('last.warning') && length(last.warning)>0) names(last.warning)[1] else 0");
-        if (w.isString()) System.err.println(w.asString());
+        res = client.eval("r=readBin('plot.jpg','raw',1024*1024); unlink('plot.jpg'); r");
 
-        return;
+        Image img = Toolkit.getDefaultToolkit().createImage(res.asBytes());
+
+        Frame f = new Frame("Plot image");
+        f.add(new PlotDemo(img));
+        f.addWindowListener(new WindowAdapter() { // just so we can close the window
+          public void windowClosing(WindowEvent e) {
+            System.exit(0);
+          }
+        });
+        f.pack();
+        f.setVisible(true);
+
+      } catch (Exception e) {
+        e.printStackTrace();
+      } finally {
+        client.close();
       }
-
-
-      rConnection.eval("library(xlsx)");
-      rConnection.eval("library(tseries)");
-      System.out.print(fileUploadName);
-      rConnection.eval("data=read.xlsx(\"" + fileUploadName.replace("\\", "/") + "\",1)");
-      REXP res = rConnection.eval("plot.ts(data)");
-
-      res = rConnection.eval("dev.copy(jpeg,filename=\"plot.jpg\")");
-      res = rConnection.eval("dev.off ()");
-      xp = rConnection.parseAndEval("r=readBin('plot.jpg','raw',1024*1024); unlink('plot.jpg'); r");
-
-      Image img = Toolkit.getDefaultToolkit().createImage(xp.asBytes());
-
-      Frame f = new Frame("Test image");
-      f.add(new PlotDemo(img));
-      f.addWindowListener(new WindowAdapter() { // just so we can close the window
-        public void windowClosing(WindowEvent e) { System.exit(0); }
-      });
-      f.pack();
-      f.setVisible(true);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    } finally {
-      if (rConnection.isConnected()) rConnection.close();
+      buttonPlotClicked = false;
     }
-
-
   }//GEN-LAST:event_jButton3ActionPerformed
 
   /**
